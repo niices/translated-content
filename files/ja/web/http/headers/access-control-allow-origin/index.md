@@ -71,13 +71,11 @@ Vary: Origin
 
 ## 仕様書
 
-| 仕様書                                                                                                               | 状態                     | 備考     |
-| -------------------------------------------------------------------------------------------------------------------- | ------------------------ | -------- |
-| {{SpecName('Fetch','#http-access-control-allow-origin', 'Access-Control-Allow-Origin')}} | {{Spec2("Fetch")}} | 初回定義 |
+{{Specifications}}
 
 ## ブラウザーの互換性
 
-{{Compat("http.headers.Access-Control-Allow-Origin")}}
+{{Compat}}
 
 ## 関連情報
 

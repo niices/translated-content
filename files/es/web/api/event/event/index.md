@@ -1,15 +1,13 @@
 ---
 title: Event()
 slug: Web/API/Event/Event
-translation_of: Web/API/Event/Event
-browser-compat: api.Event.Event
 l10n:
-  sourceCommit: 4e233c16c6f0d347972c5c762f5b836318a461244e233c16c6f0d347972c5c762f5b836318a46124
+  sourceCommit: 4e233c16c6f0d347972c5c762f5b836318a46124
 ---
 
 {{APIRef("DOM")}}
 
-El constructor **`Event()`** crea un nuevo objeto {{domxref("Event")}}. Un evento creado de esta manera se denomina _evento sintético_, a diferencia de un evento activado por el navegador, y se puede [enviar](/es/docs/Web/Events/Creating_and Triggering Events) mediante una secuencia de comandos.
+El constructor **`Event()`** crea un nuevo objeto {{domxref("Event")}}. Un evento creado de esta manera se denomina _evento sintético_, a diferencia de un evento activado por el navegador, y se puede [enviar](/es/docs/Web/Events/Creating_and_Triggering_Events) mediante una secuencia de comandos.
 
 ## Sintaxis
 
@@ -41,7 +39,7 @@ Una instancia del objeto {{domxref("Event")}}.
 ```js
 // crea un evento look que se propaga y no puede cancelarse
 
-var evento = new Event("look", {"bubbles":true, "cancelable":false});
+var evento = new Event("look", { bubbles: true, cancelable: false });
 document.dispatchEvent(evento);
 
 // El evento puede ser despachado desde cualquier elemento, no solo desde el `document`.
