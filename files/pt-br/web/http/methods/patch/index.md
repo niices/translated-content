@@ -1,14 +1,8 @@
 ---
 title: PATCH
 slug: Web/HTTP/Methods/PATCH
-tags:
-  - HTTP
-  - Método HTTP
-  - Referencia
-  - Rest
-  - patch
-translation_of: Web/HTTP/Methods/PATCH
 ---
+
 {{HTTPSidebar}}
 
 O **método de requisição HTTP PATCH** aplica modificações parciais a um recurso.
@@ -46,7 +40,7 @@ Outra indicação (implícita) da permissão de PATCH é a presença do cabeçal
     <tr>
       <th scope="row">
         Permitido em
-        <a href="/en-US/docs/Web/Guide/HTML/Forms">formulários HTML</a>
+        <a href="/pt-BR/docs/Web/Guide/HTML/Forms">formulários HTML</a>
       </th>
       <td>Não</td>
     </tr>
@@ -63,7 +57,7 @@ PATCH /file.txt HTTP/1.1
 
 ### Requisição
 
-```html
+```http
 PATCH /file.txt HTTP/1.1
 Host: www.example.com
 Content-Type: application/example
@@ -77,7 +71,7 @@ Content-Length: 100
 
 Uma resposta sucedida é indicada pelo _status_ de resposta {{HTTPStatus("204")}}, visto que a resposta não carrega um corpo de mensagem.
 
-```
+```http
 HTTP/1.1 204 No Content
 Content-Location: /arquivo.txt
 ETag: "e0023aa4f"
@@ -85,8 +79,8 @@ ETag: "e0023aa4f"
 
 ## Especificações
 
-| Especificação                    | Título                |
-| -------------------------------- | --------------------- |
+| Especificação            | Título                |
+| ------------------------ | --------------------- |
 | {{RFC("5789", "PATCH")}} | PATCH Method for HTTP |
 
 ## Veja também

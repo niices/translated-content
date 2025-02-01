@@ -1,12 +1,8 @@
 ---
 title: icons
 slug: Web/Manifest/icons
-tags:
-  - Icons
-  - Manifest
-  - Web
-translation_of: Web/Manifest/icons
 ---
+
 {{QuickLinksWithSubpages('/ru/docs/Web/Manifest')}}
 
 <table class="properties">
@@ -132,12 +128,10 @@ translation_of: Web/Manifest/icons
   </tbody>
 </table>
 
-## Specifications
+## Спецификации
 
-| Specification                                                        | Status                       | Comment             | Feedback                                                                         |
-| -------------------------------------------------------------------- | ---------------------------- | ------------------- | -------------------------------------------------------------------------------- |
-| {{SpecName('Manifest', '#icons-member', 'icons')}} | {{Spec2('Manifest')}} | Initial definition. | [Web App Manifest Working Group drafts](https://github.com/w3c/manifest/issues/) |
+{{Specifications}}
 
-## Browser compatibility
+## Совместимость с браузерами
 
 {{Compat}}

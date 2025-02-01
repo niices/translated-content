@@ -1,13 +1,13 @@
 ---
 title: Элемент.scrollLeft
 slug: Web/API/Element/scrollLeft
-translation_of: Web/API/Element/scrollLeft
 ---
+
 {{ APIRef("DOM") }}
 
 Свойство **`scrollLeft`** получает или устанавливает количество пикселей, на которое контент элемента прокручен влево.
 
-Заметьте, что если свойство {{cssxref("direction")}}: `rtl` (right-to-left), то `scrollLeft` равен `0, `когда скроллбар на его самой правой позиции (с начала прокрученного контента), а затем становится отрицательным по мере прокрутки к концу контента.
+Заметьте, что если свойство {{cssxref("direction")}}: `rtl` (right-to-left), то `scrollLeft` равен `0`, когда скроллбар на его самой правой позиции (с начала прокрученного контента), а затем становится отрицательным по мере прокрутки к концу контента.
 
 ## Синтаксис
 
@@ -32,36 +32,48 @@ element.scrollLeft = 10;
 ## Пример
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <style>
-        #container {
-            border: 1px solid #ccc; height: 100px; overflow: scroll; width: 100px;
-        }
-        #content {
-            background-color: #ccc; width: 250px;
-        }
+      #container {
+        border: 1px solid #ccc;
+        height: 100px;
+        overflow: scroll;
+        width: 100px;
+      }
+      #content {
+        background-color: #ccc;
+        width: 250px;
+      }
     </style>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var button = document.getElementById('slide');
-            button.onclick = function () {
-                document.getElementById('container').scrollLeft += 20;
-            };
-        }, false);
+      document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+          var button = document.getElementById("slide");
+          button.onclick = function () {
+            document.getElementById("container").scrollLeft += 20;
+          };
+        },
+        false,
+      );
     </script>
-</head>
-<body>
+  </head>
+  <body>
     <div id="container">
-        <div id="content">Бла-бла-бла</div>
+      <div id="content">Бла-бла-бла</div>
     </div>
     <button id="slide" type="button">Пролистать</button>
-</body>
+  </body>
 </html>
 ```
 
 ## Спецификации
 
 {{Specifications}}
+
+## Совместимость с браузерами
+
+{{Compat}}
