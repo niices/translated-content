@@ -1,17 +1,14 @@
 ---
-title: Response.headers
+title: "Response: headers プロパティ"
+short-title: headers
 slug: Web/API/Response/headers
+l10n:
+  sourceCommit: 58ad1df59f2ffb9ecab4e27fe1bdf1eb5a55f89b
 ---
 
-{{APIRef("Fetch")}}
+{{APIRef("Fetch API")}}
 
-{{domxref("Response")}} インターフェイスの **`headers`** 読み取り専用プロパティはレスポンスに関連付けられた {{domxref("Headers")}} オブジェクトが含まれています。
-
-## 構文
-
-```
-var myHeaders = response.headers;
-```
+**`headers`** は {{domxref("Response")}} インターフェイスの読み取り専用プロパティで、このレスポンスに関連付けられた {{domxref("Headers")}} オブジェクトが含まれています。
 
 ### 値
 
@@ -19,36 +16,36 @@ var myHeaders = response.headers;
 
 ## 例
 
-[Fetch Response の例](https://github.com/mdn/fetch-examples/tree/master/fetch-response) ( [Fetch Response live](http://mdn.github.io/fetch-examples/fetch-response/) を参照) では、 {{domxref("Request.Request","Request()")}} コンストラクタを使用して新しい {{domxref("Request")}} オブジェクトを作成し、 JPG のパスを渡します。次に {{domxref("GlobalFetch.fetch","fetch()")}} を使用してこのリクエストをフェッチし、 {{domxref("Body.blob")}} を使用してリクエストから blob を抽出し、 {{domxref("URL.createObjectURL")}} を使用してオブジェクト URL を作成し、これを {{htmlelement("img")}} に表示します。
+[Fetch Response の例](https://github.com/mdn/dom-examples/tree/main/fetch/fetch-response) ( [Fetch Response live](https://mdn.github.io/dom-examples/fetch/fetch-response/) を参照) では、新しい {{domxref("Request")}} オブジェクトを、 {{domxref("Request.Request","Request()")}} コンストラクターを使用して作成し、 JPG のパスを渡します。次に {{domxref("Window/fetch", "fetch()")}} を使用してこのリクエストをフェッチし、 {{domxref("Response.blob")}} を使用してリクエストから blob を抽出し、 {{domxref("URL.createObjectURL_static", "URL.createObjectURL()")}} を使用してオブジェクト URL を作成し、これを {{htmlelement("img")}} に表示します。
 
 `fetch()` ブロックの上部でレスポンス `headers` の値をコンソールに記録している事に注意して下さい。
 
 ```js
-var myImage = document.querySelector('img');
+const myImage = document.querySelector("img");
 
-var myRequest = new Request('flowers.jpg');
+const myRequest = new Request("flowers.jpg");
 
-fetch(myRequest).then(function(response) {
-  console.log(response.headers); // returns a Headers{} object
-  response.blob().then(function(myBlob) {
-    var objectURL = URL.createObjectURL(myBlob);
+fetch(myRequest)
+  .then((response) => {
+    console.log("レスポンスヘッダー =", response.headers);
+    return response.blob();
+  })
+  .then((myBlob) => {
+    const objectURL = URL.createObjectURL(myBlob);
     myImage.src = objectURL;
   });
-});
 ```
 
-## 仕様
+## 仕様書
 
-| 仕様                                                                     | ステータス               | 備考     |
-| ------------------------------------------------------------------------ | ------------------------ | -------- |
-| {{SpecName('Fetch','#dom-response-headers','headers')}} | {{Spec2('Fetch')}} | 初回定義 |
+{{Specifications}}
 
 ## ブラウザーの互換性
 
-{{Compat("api.Response.headers")}}
+{{Compat}}
 
-## 関連項目
+## 関連情報
 
-- [ServiceWorker API](/ja/docs/Web/API/ServiceWorker_API)
-- [HTTP access control (CORS)](/ja/docs/Web/HTTP/Access_control_CORS)
+- [サービスワーカー API](/ja/docs/Web/API/Service_Worker_API)
+- [HTTP アクセス制御 (CORS)](/ja/docs/Web/HTTP/CORS)
 - [HTTP](/ja/docs/Web/HTTP)

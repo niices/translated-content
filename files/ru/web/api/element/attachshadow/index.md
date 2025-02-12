@@ -1,11 +1,11 @@
 ---
 title: Element.attachShadow()
 slug: Web/API/Element/attachShadow
-translation_of: Web/API/Element/attachShadow
 ---
+
 {{APIRef('Shadow DOM')}} {{SeeCompatTable}}
 
-Метод **`Element.attachShadow()`** добавляет теневое DOM дерево к указанному элементу и возвращает ссылку на его [`ShadowRoot`](/ru/docs/Web/API/ShadowRoot "Use Element.attachShadow to create an instance of shadow DOM. When shadow DOM is created, it is always attached to an existing element. After the shadow DOM is created, the element that it is attached to is called the shadow root.")( корневой элемент созданного дерева).
+Метод **`Element.attachShadow()`** добавляет теневое DOM дерево к указанному элементу и возвращает ссылку на его [`ShadowRoot`](/ru/docs/Web/API/ShadowRoot) (корневой элемент созданного дерева).
 
 #### Элементы которые можно добавить в теневой DOM
 
@@ -45,7 +45,7 @@ var shadowroot = element.attachShadow(shadowRootInit);
 
     `mode`: Строка указывающая на режим инкапсуляции для shadowDOM:
 
-    - `open. `Указывает на открытие режима инкапсуляции.
+    - `open.` Указывает на открытие режима инкапсуляции.
       Это означает что элементы shadowRoot доступны для внешнего мира _element.shadowRoot_
 
       ```
@@ -85,39 +85,39 @@ class WordCount extends HTMLParagraphElement {
     // count words in element's parent element
     var wcParent = this.parentNode;
 
-    function countWords(node){
-      var text = node.innerText || node.textContent
+    function countWords(node) {
+      var text = node.innerText || node.textContent;
       return text.split(/\s+/g).length;
     }
 
-    var count = 'Words: ' + countWords(wcParent);
+    var count = "Words: " + countWords(wcParent);
 
     // Create a shadow root
-    var shadow = this.attachShadow({mode: 'open'});
+    var shadow = this.attachShadow({ mode: "open" });
 
     // Create text node and add word count to it
-    var text = document.createElement('span');
+    var text = document.createElement("span");
     text.textContent = count;
 
     // Append it to the shadow root
     shadow.appendChild(text);
 
     // Update count when element content changes
-    setInterval(function() {
-      var count = 'Words: ' + countWords(wcParent);
+    setInterval(function () {
+      var count = "Words: " + countWords(wcParent);
       text.textContent = count;
-    }, 200)
+    }, 200);
   }
 }
 
 // Define the new element
-customElements.define('word-count', WordCount, { extends: 'p' });
+customElements.define("word-count", WordCount, { extends: "p" });
 ```
 
 ## Спецификации
 
 {{Specifications}}
 
-## Совместимость браузеров
+## Совместимость с браузерами
 
 {{Compat}}

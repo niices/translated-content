@@ -1,103 +1,112 @@
 ---
 title: Response
 slug: Web/API/Response
+l10n:
+  sourceCommit: 58ad1df59f2ffb9ecab4e27fe1bdf1eb5a55f89b
 ---
 
 {{APIRef("Fetch API")}}
 
-**`Response`** は [Fetch API](/ja/docs/Web/API/Fetch_API) のインターフェイスで、リクエストのレスポンスを表します。
+**`Response`** は[フェッチ API](/ja/docs/Web/API/Fetch_API) のインターフェイスで、リクエストのレスポンスを表します。
 
-`Response` オブジェクトは {{domxref("Response.Response()")}} コンストラクターを用いて生成することができますが、他の API 操作の結果として返される `Response` オブジェクトに出会う可能性が高いでしょう。例えば、サービスワーカーの {{domxref("Fetchevent.respondWith")}} や、単純な {{domxref("WindowOrWorkerGlobalScope.fetch()")}} などです。
+`Response` オブジェクトは {{domxref("Response.Response", "Response()")}} コンストラクターを用いて生成することができますが、他の API 操作の結果として返される `Response` オブジェクトに出会う可能性が高いでしょう。例えば、サービスワーカーの {{domxref("FetchEvent.respondWith")}} や、単純な {{domxref("Window/fetch", "fetch()")}} などです。
 
 ## コンストラクター
 
 - {{domxref("Response.Response","Response()")}}
   - : 新しい `Response` オブジェクトを返します。
 
-## プロパティ
+## インスタンスプロパティ
 
-- {{domxref("Response.body")}} {{readonlyInline}}
+- {{domxref("Response.body")}} {{ReadOnlyInline}}
   - : 本文のコンテンツの {{domxref("ReadableStream")}} です。
-- {{domxref("Response.bodyUsed")}} {{readonlyInline}}
+- {{domxref("Response.bodyUsed")}} {{ReadOnlyInline}}
   - : 本文がレスポンスで使用されたかどうかを定義する論理値が格納されます。
-- {{domxref("Response.headers")}} {{readonlyinline}}
+- {{domxref("Response.headers")}} {{ReadOnlyInline}}
   - : レスポンスに関連した {{domxref("Headers")}} オブジェクトが入ります。
-- {{domxref("Response.ok")}} {{readonlyinline}}
-  - : レスポンスが成功 (`200`–`299` の範囲のステータス) したか否かを通知する論理値が入ります。
+- {{domxref("Response.ok")}} {{ReadOnlyInline}}
+  - : レスポンスが成功（`200` – `299` の範囲のステータス）したか否かを通知する論理値が入ります。
 - {{domxref("Response.redirected")}} {{ReadOnlyInline}}
   - : レスポンスがリダイレクトの結果である (つまり、その URL リストには複数のエントリーがある) かどうかを示します。
-- {{domxref("Response.status")}} {{readonlyinline}}
+- {{domxref("Response.status")}} {{ReadOnlyInline}}
   - : このレスポンスのステータスコードを返します (成功ならば `200` になります)。
-- {{domxref("Response.statusText")}} {{readonlyinline}}
+- {{domxref("Response.statusText")}} {{ReadOnlyInline}}
   - : ステータスコードに対応したステータスメッセージが入ります (たとえば `200` ならば `OK`)。
-- {{domxref("Response.trailers")}}
-  - : {{jsxref("Promise")}} であり、 {{domxref("Headers")}} オブジェクトを返します。これは {{domxref("Response.headers")}} にある HTTP の {{HTTPHeader("Trailer")}} ヘッダーの値です。
-- {{domxref("Response.type")}} {{readonlyinline}}
+- {{domxref("Response.type")}} {{ReadOnlyInline}}
   - : レスポンスの種類です。 (例えば `basic`, `cors`)
-- {{domxref("Response.url")}} {{readonlyinline}}
+- {{domxref("Response.url")}} {{ReadOnlyInline}}
   - : レスポンスの URL を返します。
 
-## メソッド
+## 静的メソッド
+
+- {{domxref("Response.error_static","Response.error()")}}
+  - : ネットワークエラーに関連付けられた新しい `Response` オブジェクトを返します。
+- {{domxref("Response.redirect_static", "Response.redirect()")}}
+  - : 別の URL で新しいレスポンスを返します。
+- {{domxref("Response.json_static", "Response.json()")}}
+  - : 指定された JSON エンコードデータを返すための新しい `Response` オブジェクトを返します。
+
+## インスタンスメソッド
 
 - {{domxref("Response.arrayBuffer()")}}
-  - : レスポンスの本文を表す {{jsxref("ArrayBuffer")}} で解決するプロミスを返します。
+  - : レスポンスの本体を表す {{jsxref("ArrayBuffer")}} で解決するプロミスを返します。
 - {{domxref("Response.blob()")}}
-  - : レスポンスの本文を表す {{domxref("Blob")}} で解決するプロミスを返します。
+  - : レスポンスの本体を表す {{domxref("Blob")}} で解決するプロミスを返します。
+- {{domxref("Response.bytes()")}}
+  - : レスポンス本体の {{jsxref("Uint8Array")}} 表現を解決するプロミスを返します。
 - {{domxref("Response.clone()")}}
   - : `Response` オブジェクトの複製を生成します。
-- {{domxref("Response.error()")}}
-  - : ネットワークエラーに関連した新しい `Response` オブジェクトを返します。
 - {{domxref("Response.formData()")}}
-  - : レスポンスの本文を表す {{domxref("FormData")}} で解決するプロミスを返します。
+  - : レスポンスの本体を表す {{domxref("FormData")}} で解決するプロミスを返します。
 - {{domxref("Response.json()")}}
-  - : レスポンスの本文のテキストを {{jsxref("JSON")}} として解釈した結果で解決するプロミスを返します。
-- {{domxref("Response.redirect()")}}
-  - : 異なる URL で新しい response を生成します。
+  - : レスポンスの本体のテキストを {{jsxref("JSON")}} として解釈した結果で解決するプロミスを返します。
 - {{domxref("Response.text()")}}
-  - : レスポンスの本文のテキスト表現で解決するプロミスを返します。
+  - : レスポンスの本体のテキスト表現で解決するプロミスを返します。
 
 ## 例
 
-### 画像のフェッチ
+### 画像の取得
 
-[basic fetch example](https://github.com/mdn/fetch-examples/tree/master/basic-fetch) ([run example live](https://mdn.github.io/fetch-examples/basic-fetch/)) では image を取得するために単純な `fetch()` を使用し、それを {{htmlelement("img")}} タグの中に入れて表示しています。`fetch()` はプロミスを返し、これはこのリソースフェッチ捜査に関連付けられた `Response` オブジェクトで解決します。
+[basic fetch example](https://github.com/mdn/dom-examples/tree/main/basic-fetch) ([例をライブで実行](https://mdn.github.io/dom-examples/basic-fetch/)) では画像を取得するために単純な `fetch()` を使用し、それを {{htmlelement("img")}} タグの中に入れて表示しています。`fetch()` を呼び出すとプロミスを返します。これは、このリソース取得操作に関連付けられた `Response` オブジェクトで解決します。
 
-画像をリクエストするとき、レスポンスに正しい MIME タイプを設定するために、{{domxref("Response.blob")}} を実行する必要があることに注意してください。
+画像をリクエストされているので、レスポンスに正しい MIME タイプを与えるために {{domxref("Response.blob")}} を実行する必要があることにお気づきでしょう。
 
 ```js
-const image = document.querySelector('.my-image');
-fetch('flowers.jpg')
-.then(response => response.blob())
-.then(blob => {
-  const objectURL = URL.createObjectURL(blob);
-  image.src = objectURL;
-});
+const image = document.querySelector(".my-image");
+fetch("flowers.jpg")
+  .then((response) => response.blob())
+  .then((blob) => {
+    const objectURL = URL.createObjectURL(blob);
+    image.src = objectURL;
+  });
 ```
 
-{{domxref("Response.Response()")}} コンストラクターを使用して、独自の `Response` オブジェクトを生成することもできます。
+{{domxref("Response.Response", "Response()")}} コンストラクターを使用して、独自の `Response` オブジェクトを生成することもできます。
 
 ```js
 const response = new Response();
 ```
 
-### Ajax 呼び出し
+### PHP の呼び出し
 
-ここで JSON 文字列を生成する PHP のプログラムファイルを呼び出し、結果として JSON の値を表示します。簡単なエラーハンドリングも含んでいます。
+ここで JSON 文字列を生成する PHP のプログラムファイルを呼び出し、結果として JSON の値を表示します。
 
 ```js
-// Function to do an Ajax call
-const doAjax = async () => {
-  const response = await fetch('Ajax.php'); // Generate the Response object
+// PHP を使用した JSON を呼び出す関数
+const getJSON = async () => {
+  // Response オブジェクトを生成
+  const response = await fetch("getJSON.php");
   if (response.ok) {
-    const jsonValue = await response.json(); // Get JSON value from the response body
-    return Promise.resolve(jsonValue);
-  } else {
-    return Promise.reject('*** PHP file not found');
+    // レスポンスの本体から JSON の値を取得
+    return response.json();
   }
-}
+  throw new Error("*** PHP ファイルが見つかりません");
+};
 
-// Call the function and output value or error message to console
-doAjax().then(console.log).catch(console.log);
+// 関数を呼び出され、値やエラーメッセージをコンソールに出力する
+getJSON()
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
 ```
 
 ## 仕様書
@@ -110,6 +119,6 @@ doAjax().then(console.log).catch(console.log);
 
 ## 関連情報
 
-- [ServiceWorker API](/ja/docs/Web/API/Service_Worker_API)
+- [サービスワーカー API](/ja/docs/Web/API/Service_Worker_API)
 - [HTTP アクセス制御 (CORS)](/ja/docs/Web/HTTP/CORS)
 - [HTTP](/ja/docs/Web/HTTP)

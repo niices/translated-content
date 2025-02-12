@@ -1,24 +1,19 @@
 ---
 title: DOMParser
 slug: Web/API/DOMParser
-tags:
-  - API
-  - DOM
-  - XML
-  - Экспериментальное
-translation_of: Web/API/DOMParser
 ---
-{{APIRef("DOM")}}{{SeeCompatTable}}
 
-`DOMParser` может парсить XML или HTML источник содержащийся в строке в DOM [Document](/ru/docs/DOM/document "document"). Спецификация `DOMParser находится в` [DOM Parsing and Serialization](https://w3c.github.io/DOM-Parsing/).
+{{APIRef("DOM")}}
 
-Заметьте, что [XMLHttpRequest](/ru/docs/DOM/XMLHttpRequest "DOM/XMLHttpRequest") поддерживает парсинг XML и HTML из интернет ресурсов (по ссылке)
+`DOMParser` может парсить XML или HTML источник содержащийся в строке в DOM [Document](/ru/docs/Web/API/Document). Спецификация `DOMParser находится в` [DOM Parsing and Serialization](https://w3c.github.io/DOM-Parsing/).
+
+Заметьте, что [XMLHttpRequest](/ru/docs/Web/API/XMLHttpRequest) поддерживает парсинг XML и HTML из интернет ресурсов (по ссылке)
 
 ## Создание DOMParser
 
 Для того чтобы создать `DOMParser` просто используйте `new DOMParser()`.
 
-Для большей информации о создании `DOMParser` в расширениях Firefox, пожалуйста прочитайте документацию : [`nsIDOMParser`](/ru/docs/nsIDOMParser "nsIDOMParser").
+Для большей информации о создании `DOMParser` в расширениях Firefox, пожалуйста прочитайте документацию : [`nsIDOMParser`](/ru/docs/nsIDOMParser).
 
 ## Парсинг XML
 
@@ -31,7 +26,7 @@ var doc = parser.parseFromString(stringContainingXMLSource, "application/xml");
 
 ### Обработка ошибок
 
-Заметьте, если процесс парсинга не удастся , `DOMParser` теперь не выдаёт исключение, но вместо этого выдаёт документ ошибки (see {{Bug(45566)}}):
+Заметьте, если процесс парсинга не удастся , `DOMParser` теперь не выдаёт исключение, но вместо этого выдаёт документ ошибки (see [Firefox bug 45566](https://bugzil.la/45566)):
 
 ```xml
 <parsererror xmlns="http://www.mozilla.org/newlayout/xml/parsererror.xml">
@@ -40,11 +35,11 @@ var doc = parser.parseFromString(stringContainingXMLSource, "application/xml");
 </parsererror>
 ```
 
-Ошибки синтаксического анализа также сообщаются в [консоль ошибок](/ru/docs/Error_Console "Error Console"), с идентификатором URI документа (см. Ниже) в качестве источника ошибки.
+Ошибки синтаксического анализа также сообщаются в [консоль ошибок](/ru/docs/Error_Console), с идентификатором URI документа (см. Ниже) в качестве источника ошибки.
 
 ## Разбор SVG или HTML
 
-`DOMParser` так же может быть использован для разбора SVG документа {{geckoRelease("10.0")}} или HTML документа {{geckoRelease("12.0")}}. На выходе возможны 3 варианта, в зависимости от переданного MIME типа. Если MIME тип передан как `text/xml`, результирующий объект будет типа `XMLDocument`, если `image/svg+xml`, соответственно `SVGDocument,` а для MIME типа ` text/html - ``HTMLDocument `.
+`DOMParser` так же может быть использован для разбора SVG документа Gecko 10.0 или HTML документа Gecko 12.0. На выходе возможны 3 варианта, в зависимости от переданного MIME типа. Если MIME тип передан как `text/xml`, результирующий объект будет типа `XMLDocument`, если `image/svg+xml`, соответственно `SVGDocument`, а для MIME типа `text/html` - `HTMLDocument`.
 
 ```js
 var parser = new DOMParser();
@@ -75,40 +70,34 @@ doc = parser.parseFromString(stringContainingHTMLSource, "text/html");
 /*! @source https://gist.github.com/1129031 */
 /*global document, DOMParser*/
 
-(function(DOMParser) {
-	"use strict";
+(function (DOMParser) {
+  "use strict";
 
-	var
-	  proto = DOMParser.prototype
-	, nativeParse = proto.parseFromString
-	;
+  var proto = DOMParser.prototype,
+    nativeParse = proto.parseFromString;
+  // Firefox/Opera/IE throw errors on unsupported types
+  try {
+    // WebKit returns null on unsupported types
+    if (new DOMParser().parseFromString("", "text/html")) {
+      // text/html parsing is natively supported
+      return;
+    }
+  } catch (ex) {}
 
-	// Firefox/Opera/IE throw errors on unsupported types
-	try {
-		// WebKit returns null on unsupported types
-		if ((new DOMParser()).parseFromString("", "text/html")) {
-			// text/html parsing is natively supported
-			return;
-		}
-	} catch (ex) {}
-
-	proto.parseFromString = function(markup, type) {
-		if (/^\s*text\/html\s*(?:;|$)/i.test(type)) {
-			var
-			  doc = document.implementation.createHTMLDocument("")
-			;
-	      		if (markup.toLowerCase().indexOf('<!doctype') > -1) {
-        			doc.documentElement.innerHTML = markup;
-      			}
-      			else {
-        			doc.body.innerHTML = markup;
-      			}
-			return doc;
-		} else {
-			return nativeParse.apply(this, arguments);
-		}
-	};
-}(DOMParser));
+  proto.parseFromString = function (markup, type) {
+    if (/^\s*text\/html\s*(?:;|$)/i.test(type)) {
+      var doc = document.implementation.createHTMLDocument("");
+      if (markup.toLowerCase().indexOf("<!doctype") > -1) {
+        doc.documentElement.innerHTML = markup;
+      } else {
+        doc.body.innerHTML = markup;
+      }
+      return doc;
+    } else {
+      return nativeParse.apply(this, arguments);
+    }
+  };
+})(DOMParser);
 ```
 
 ### DOMParser from Chrome/JSM/XPCOM/Privileged Scope
@@ -119,13 +108,13 @@ doc = parser.parseFromString(stringContainingHTMLSource, "text/html");
 
 {{Specifications}}
 
-## Поддержка браузерами
+## Совместимость с браузерами
 
 {{Compat}}
 
 ## Смотрите также
 
-- [Анализ и сериализация XML](/ru/docs/Parsing_and_serializing_XML "Parsing_and_serializing_XML")
-- [XMLHttpRequest](/ru/docs/DOM/XMLHttpRequest "DOM/XMLHttpRequest")
-- [XMLSerializer](/ru/docs/XMLSerializer "XMLSerializer")
-- [Parsing HTML to DOM](/en-US/Add-ons/Code_snippets/HTML_to_DOM)
+- [Анализ и сериализация XML](/ru/docs/Web/XML/Parsing_and_serializing_XML)
+- [XMLHttpRequest](/ru/docs/Web/API/XMLHttpRequest)
+- [XMLSerializer](/ru/docs/Web/API/XMLSerializer)
+- [Parsing HTML to DOM](/ru/docs/Mozilla/Add-ons/Code_snippets/HTML_to_DOM)
